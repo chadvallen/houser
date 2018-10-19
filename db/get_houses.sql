@@ -1,1 +1,2 @@
-select * from houses;
+select * from houses
+order by id asc;

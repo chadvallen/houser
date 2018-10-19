@@ -3,6 +3,8 @@ import House from '../House/House';
 import './Dashboard.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateMortgage } from '../../ducks/reducer';
 
 class Dashboard extends Component {
     constructor() {
@@ -11,7 +13,6 @@ class Dashboard extends Component {
         this.state = {
             inventory: []
         }
-
         this.deleteHouse = this.deleteHouse.bind(this);
     }
 
@@ -33,17 +34,32 @@ class Dashboard extends Component {
     deleteHouse(id){
         axios.delete(`/api/houses/${id}`).then(() => {
             console.log('House deleted')
+            {this.getHouses()}
         }).catch(err => {
             console.error('Error on deleteHouse', err)
         })
-        this.getHouses()
+        
+    }
+
+    updateHouse(mortgage, id){
+        axios.put(`/api/houses/${id}`, {mortgage}).then(() => {
+            console.log('Mortgage updated')
+            {this.getHouses()};
+        }).catch(err => {
+            console.error('Error on updateMortgage', err)
+        })
+        
     }
 
     render() {
+        const { updateMortgage } = this.props;
         let houses = this.state.inventory.map(item => {
-            return (<div>
-            <House name={item.name} address={item.address} city={item.city} statename={item.statename} zipcode={item.zipcode} image_url={item.image_url} mortgage={item.mortgage} deleteHouse={() => this.deleteHouse(item.id)} />
-            
+            return (
+            <div className="house">
+            <House name={item.name} address={item.address} city={item.city} statename={item.statename} zipcode={item.zipcode} image_url={item.image_url} mortgage={item.mortgage} />
+            Update Mortgage: <input onChange={e => updateMortgage(e.target.value)}></input>
+            <button onClick={() => this.updateHouse(this.props.mortgage, item.id)}>Update</button><br></br>
+            <button onClick={() => this.deleteHouse(item.id)}>Delete</button>
             </div>
             )
         })
@@ -61,4 +77,15 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+const mapDispatchToProps = {
+    updateMortgage: updateMortgage
+}
+
+function mapStateToProps(state) {
+    const { mortgage } = state;
+    return {
+        mortgage
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
