@@ -11,11 +11,11 @@ module.exports = {
 
     addHouse: (req, res) => {
         const db = req.app.get('db');
-        const { name, address, city, stateName, zipcode, image_url } = req.body;
-        db.add_house(name, address, city, stateName, zipcode, image_url).then(house => {
+        const { name, address, city, stateName, zipcode, image_url, mortgage } = req.body;
+        db.add_house(name, address, city, stateName, zipcode, image_url, mortgage).then(house => {
             res.status(200).json(house);
         }).catch(err => {
-            console.error('Error on addHouse', err);
+            console.error('Error on addHouse!', err);
         })
     },
 
@@ -31,11 +31,12 @@ module.exports = {
 
     updateHouse: (req, res) => {
         const db = req.app.get('db');
-        const { name, address, city, stateName, zipcode, image_url } = req.body;
+        const { mortgage } = req.body;
         const { id } = req.params;
-        db.update_house(name, address, city, stateName, zipcode, image_url, id).then(() => {
+        db.update_house(mortgage, id).then(() => {
             res.sendStatus(200);
         }).catch(err => {
+            res.status(500).send('ERROR')
             console.error('Error on updateHouse', err);
         })
     }

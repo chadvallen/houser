@@ -1,0 +1,18 @@
+.wrapper {
+    max-width: 800px;
+    background: #E5F4EC;
+    height: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    padding: 20px;
+}
+
+input {
+    margin: 10px;
+}
+
+.fullheight {
+    height: 100vh;
+}

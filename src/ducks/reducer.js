@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     city: '',
     stateName: '',
     zipcode: '',
-    image_url: ''
+    image_url: '',
+    mortgage: 0
 };
 
 const UPDATE_NAME = "UPDATE_NAME";
@@ -13,6 +14,8 @@ const UPDATE_CITY = "UPDATE_CITY";
 const UPDATE_STATE = "UPDATE_STATE";
 const UPDATE_ZIPCODE = "UPDATE_ZIPCODE";
 const UPDATE_IMAGE_URL = "UPDATE_IMAGE_URL";
+const UPDATE_MORTGAGE = "UPDATE_MORTGAGE";
+
 
 export function updateName(name) {
     return {
@@ -56,6 +59,12 @@ export function updateImageUrl(image_url) {
     }
 }
 
+export function updateMortgage(mortgage){
+    return {
+        type: UPDATE_MORTGAGE,
+        payload: mortgage
+    }
+}
 
 function reducer(state=INITIAL_STATE, action) {
     switch(action.type) {
@@ -71,6 +80,8 @@ function reducer(state=INITIAL_STATE, action) {
             return Object.assign({}, state, {zipcode: action.payload});
         case UPDATE_IMAGE_URL:
             return Object.assign({}, state, {image_url: action.payload});
+        case UPDATE_MORTGAGE:
+            return Object.assign({}, state, {mortgage: action.payload});
         default: return state;
     }
 }
