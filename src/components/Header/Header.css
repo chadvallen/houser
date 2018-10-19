@@ -1,0 +1,17 @@
+.header {
+    height: 100px;
+    background: #519872;
+}
+
+.houser {
+    color: white;
+    margin: 0;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.links {
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+}

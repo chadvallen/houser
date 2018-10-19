@@ -19,8 +19,6 @@ app.post('/api/houses', HC.addHouse);
 app.put('/api/houses/:id', HC.updateHouse);
 app.delete('/api/houses/:id', HC.deleteHouse);
 
-
-
 const SERVER_PORT = process.env.SERVER_PORT || 4100;
 app.listen(SERVER_PORT, () => {
     console.log(`Server is listening on port ${SERVER_PORT} 🎃`)

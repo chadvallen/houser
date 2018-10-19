@@ -2,7 +2,7 @@ const INITIAL_STATE = {
     name: '',
     address: '',
     city: '',
-    state: '',
+    stateName: '',
     zipcode: '',
     image_url: ''
 };
@@ -35,10 +35,10 @@ export function updateCity(city) {
     }
 }
 
-export function updateState(state) {
+export function updateState(stateName) {
     return {
         type: UPDATE_STATE,
-        payload: state
+        payload: stateName
     }
 }
 
@@ -62,11 +62,11 @@ function reducer(state=INITIAL_STATE, action) {
         case UPDATE_NAME:
             return Object.assign({}, state, {name: action.payload});
         case UPDATE_ADDRESS:
-            return Object.assign({}. state, {address: action.payload});
+            return Object.assign({}, state, {address: action.payload});
         case UPDATE_CITY:
             return Object.assign({}, state, {city: action.payload});
         case UPDATE_STATE:
-            return Object.assign({}, state, {state: action.payload});
+            return Object.assign({}, state, {stateName: action.payload});
         case UPDATE_ZIPCODE:
             return Object.assign({}, state, {zipcode: action.payload});
         case UPDATE_IMAGE_URL:

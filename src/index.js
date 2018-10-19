@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { HashRouter as HR} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './ducks/store';
 
 
 ReactDOM.render(
-<HR>
-<App />
-</HR>, document.getElementById('root'));
+<Provider store={store}>
+    <HR>
+        <App />
+    </HR>
+</Provider>
+, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
 
